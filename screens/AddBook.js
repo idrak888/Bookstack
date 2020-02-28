@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 class AddBook extends Component {
     state = {
-        apiKey: 'AIzaSyAMEJ-I89256xzJaMlHO2FXjzgNkNEtxw0',
+        apiKey: '',
         searchKeys: '',
         books: [],
         collection: []
