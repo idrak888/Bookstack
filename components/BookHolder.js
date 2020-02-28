@@ -5,10 +5,13 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 const BookHolder = props => {
     const LeftActions = () => {
         return (
-            <TouchableOpacity onPress={() => {props.removeBook()}} style={{backgroundColor: '#E74C3C', padding: 20, justifyContent: 'center'}} activeOpacity={0.8}>
+            <TouchableOpacity onPress={() => removeBook()} style={{backgroundColor: '#E74C3C', padding: 20, justifyContent: 'center'}} activeOpacity={0.8}>
                 <Image style={{width: 25, height: 25}} source={{uri:'https://www.pinclipart.com/picdir/big/88-882904_mermaiden-crystal-dress-up-game-white-x-icon.png'}}/>
             </TouchableOpacity>
         )
+    }
+    const removeBook = () => {
+        props.removeBook();
     }
     return (
         <Swipeable

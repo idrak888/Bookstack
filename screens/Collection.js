@@ -105,6 +105,7 @@ class Collection extends Component {
                 <FlatList
                     data={this.state.books}
                     style={{flex: 1}}
+                    keyExtractor={item => item.title}
                     renderItem={book => {
                         return (
                             <BookHolder

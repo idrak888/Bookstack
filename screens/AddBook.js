@@ -16,24 +16,7 @@ class AddBook extends Component {
         this.fetchCollection();
         this.displayData();
 
-        const randomizer = Math.floor(Math.random() * Math.floor(3));
-        var term = '';
-
-        switch(randomizer) {
-            case 0:
-                term = 'harry+potter';
-                break;
-            case 1: 
-                term = 'how+to';
-                break;
-            case 2: 
-                term = 'the';
-                break;
-            default :
-                term = 'the';
-        }
-
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${term}&orderBy=relevance&key=${this.state.apiKey}`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=harry+potter+inauthor:jk&key=${this.state.apiKey}`)
         .then(doc => {
             this.setState({books:doc.data.items});
         });
@@ -52,8 +35,18 @@ class AddBook extends Component {
     }
     addToCollection = book => {
         var collection = this.state.collection;
-        collection.unshift(book.volumeInfo);
-        this.updateCollection(collection);
+        var exists = false;
+        for (let i of collection) {
+            if (i.title == book.volumeInfo.title) {
+                alert('Duplicate book detected!');
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) {
+            collection.unshift(book.volumeInfo);
+            this.updateCollection(collection);
+        }
     }
     fetchCollection = async () => {
         try {
